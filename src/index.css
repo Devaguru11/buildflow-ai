@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-cyan: #06b6d4;
+  --color-brand-blue: #2563eb;
+  --color-brand-purple: #9333ea;
+
+  --shadow-premium: 0 0 40px -10px rgba(0, 0, 0, 0.5);
+  --shadow-neon-cyan: 0 0 30px -5px rgba(6, 182, 212, 0.4);
+  --shadow-neon-purple: 0 0 30px -5px rgba(147, 51, 234, 0.4);
+}
+
+:root {
+  --background: 240 10% 2%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 4%;
+  --card-foreground: 0 0% 98%;
+  --border: 0 0% 100% / 0.15;
+  --primary: 188 86% 43%;
+}
+
+body {
+  @apply bg-[#050505] text-[#f5f5f5] antialiased selection:bg-cyan-500/30;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+.architect-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.blueprint-card {
+  @apply bg-[#0c0c0c] border border-white/[0.08] rounded-[2.5rem] relative overflow-hidden transition-all duration-500 hover:border-white/20;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.blueprint-card::after {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none transition-opacity duration-500;
+}
+
+.blueprint-card:hover::after {
+  @apply opacity-0;
+}
+
+.glow-cyan {
+  @apply shadow-[0_0_50px_-15px_rgba(6,182,212,0.5)];
+}
+
+.glow-purple {
+  @apply shadow-[0_0_50px_-15px_rgba(147,51,234,0.5)];
+}
+
+.glass-panel {
+  @apply bg-white/[0.03] backdrop-blur-xl border border-white/10;
+}
+
+.glass-card {
+  @apply bg-white/[0.02] backdrop-blur-md border border-white/5 hover:border-cyan-500/30 transition-all duration-300;
+}
+
+.navbar-blur {
+  @apply bg-black/40 backdrop-blur-md border-b border-white/5;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40;
+}
+
+/* Markdown Table Styles */
+.prose table {
+  @apply w-full border-collapse text-xs my-6 overflow-hidden rounded-xl border border-white/5;
+}
+
+.prose th {
+  @apply bg-white/5 p-4 text-left font-bold text-cyan-400 uppercase tracking-widest border-b border-white/5;
+}
+
+.prose td {
+  @apply p-4 text-white/50 border-b border-white/[0.03];
+}
+
+.prose tr:last-child td {
+  @apply border-0;
+}
+
+.prose tr:hover td {
+  @apply text-white bg-white/[0.01];
+}
+
+/* Mermaid Customization */
+.mermaid svg {
+  background: transparent !important;
+  max-width: 100%;
+}
+
+.mermaid .node rect, 
+.mermaid .node circle, 
+.mermaid .node ellipse, 
+.mermaid .node polygon, 
+.mermaid .node path {
+  fill: rgba(255, 255, 255, 0.03) !important;
+  stroke: rgba(6, 182, 212, 0.3) !important;
+  stroke-width: 1.5px !important;
+  transition: all 0.3s ease;
+}
+
+.mermaid .node:hover rect,
+.mermaid .node:hover circle,
+.mermaid .node:hover ellipse {
+  fill: rgba(6, 182, 212, 0.1) !important;
+  stroke: rgba(6, 182, 212, 0.6) !important;
+  filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.4));
+}
+
+.mermaid .edgePath .path {
+  stroke: rgba(6, 182, 212, 0.2) !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid .edgeLabel {
+  background-color: #0a0a0a !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  padding: 2px 4px !important;
+  border-radius: 4px !important;
+  font-size: 9px !important;
+}
+
+.mermaid .label {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+}
+
+/* Mindmap Specifics */
+.mermaid .mindmap-node {
+  stroke: rgba(147, 51, 234, 0.4) !important;
+}
+
+.mermaid .mindmap-node--root {
+  stroke: #9333ea !important;
+  stroke-width: 2px !important;
+  fill: rgba(147, 51, 234, 0.1) !important;
+}
+
+.mermaid .mindmap-edge {
+  stroke: rgba(147, 51, 234, 0.2) !important;
+}
+
+/* Marker/Arrowhead styling */
+.mermaid marker {
+  fill: rgba(6, 182, 212, 0.4) !important;
+}
